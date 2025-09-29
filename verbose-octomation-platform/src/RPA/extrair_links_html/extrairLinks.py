@@ -1,7 +1,9 @@
 import os.path
 
 
-def extrair_links_html(caminho_arquivo_entrada, caminho_arquivo_saida):
+def extrair_links_html():
+    caminho_arquivo_entrada = input("Informe o caminho do arquivo de entrada")
+    caminho_arquivo_saida = input("Informe o caminho do arquivo de Saida")
     if (os.path.isfile(caminho_arquivo_entrada)):
         if(caminho_arquivo_entrada.endswith((".html", ".htm"))):
             with open(caminho_arquivo_entrada, "r", encoding="utf-8") as file:
@@ -14,22 +16,26 @@ def extrair_links_html(caminho_arquivo_entrada, caminho_arquivo_saida):
 
                     inicio = conteudo.index(inicio_tag)+len(inicio_tag)
                     fim = conteudo.index(fim_tag, inicio+len(inicio_tag))
-
-
                     tag_a = conteudo[inicio:fim]
                     quantidadeLinks+=1
                     links.add(tag_a)
                     conteudo = conteudo[fim:]
-                return (f'Quantidade de Links no arquivo: {quantidadeLinks}',
-                        f'Quantidade de Links Únicos: {len(links)}',
-                        links)
+
+            iteracaoArquivo = 'a' if os.path.isfile(caminho_arquivo_saida) else 'w'
+            with open(caminho_arquivo_saida,iteracaoArquivo, encoding="utf-8") as file:
+                file.write("\n".join(links))
+
+            return (f'Quantidade de Links no arquivo: {quantidadeLinks}',
+                    f'Quantidade de Links Únicos: {len(links)}',
+                    links)
+        else:
+            return f'Tipo de Arquivo inválido'
     else:
         return f'O arquivo informado pelo usuário não existe.'
 
 
 
 
-caminho_entrada = "C:\\Users\\gssousa6\\OneDrive - Stefanini\\Área de Trabalho\\python\\desafio-verbose-octomation-platform\\verbose-octomation-platform\\src\\RPA\\extrair_links_html\\Arquivos\\index.html"
-caminho_saida = "C:\\Users\\gssousa6\\OneDrive - Stefanini\\Área de Trabalho\\python\\desafio-verbose-octomation-platform\\verbose-octomation-platform\\src\\RPA\\extrair_links_html\\saida.txt"
 
-print(extrair_links_html(caminho_entrada, caminho_saida))
+
+print(extrair_links_html())

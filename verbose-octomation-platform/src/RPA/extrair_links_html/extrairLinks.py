@@ -1,6 +1,5 @@
 import os.path
 
-
 def extrair_links_html():
     caminho_arquivo_entrada = input("Informe o caminho do arquivo de entrada")
     caminho_arquivo_saida = input("Informe o caminho do arquivo de Saida")
@@ -18,12 +17,29 @@ def extrair_links_html():
                     fim = conteudo.index(fim_tag, inicio+len(inicio_tag))
                     tag_a = conteudo[inicio:fim]
                     quantidadeLinks+=1
-                    links.add(tag_a)
-                    conteudo = conteudo[fim:]
+                    
+                    if(os.path.isfile(caminho_arquivo_saida)):
+                        with open(caminho_arquivo_saida, "r", encoding="utf-8") as instancia_arquivo_saida:
+                            arquivo_de_saida = instancia_arquivo_saida.read()
+
+                            passou = False
+                            
+                            if tag_a in arquivo_de_saida:
+                                print("JÁ EXISTE ESSE LINK")
+                            else:
+                                if arquivo_de_saida != "":
+                                    
+                                    if passou == False:
+                                        links.add("\n" + tag_a)
+                                        print("LINK ADICIONADO COM SUCESSO")
+                                else:
+                                    links.add(tag_a)
+
+                    conteudo = conteudo[fim:]   
 
             iteracaoArquivo = 'a' if os.path.isfile(caminho_arquivo_saida) else 'w'
             with open(caminho_arquivo_saida,iteracaoArquivo, encoding="utf-8") as file:
-                file.write("\n".join(links))
+                file.write("\n".join(links)+"\n")
 
             return (f'Quantidade de Links no arquivo: {quantidadeLinks}',
                     f'Quantidade de Links Únicos: {len(links)}',

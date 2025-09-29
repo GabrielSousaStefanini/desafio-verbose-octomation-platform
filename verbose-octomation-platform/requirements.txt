@@ -1,0 +1,4 @@
+py-rpautom
+pillow
+pandas
+numpy

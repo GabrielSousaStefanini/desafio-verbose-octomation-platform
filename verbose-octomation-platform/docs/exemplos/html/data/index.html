@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Landing - Solução Digital</title>
+  <meta name="description" content="Solução Digital: automação, integração e eficiência para o seu negócio." />
+  <style>
+    :root{
+      --bg:#f7f9fb;
+      --card:#ffffff;
+      --accent:#0b6efd;
+      --muted:#6b7280;
+      --radius:12px;
+      --maxw:980px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 40%);
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 16px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#6dd3ff);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#fff;
+      box-shadow:0 6px 18px rgba(11,110,253,0.12);
+    }
+    .brand h1{
+      font-size:18px;
+      margin:0;
+      line-height:1;
+    }
+    .brand p{margin:0;font-size:12px;color:var(--muted);}
+
+    .nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:8px;
+    }
+    .nav a.cta{
+      background:var(--accent);
+      color:#fff;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(11,110,253,0.12);
+    }
+
+    .hero{
+      background:transparent;
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      align-items:start;
+      margin-bottom:28px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 8px 24px rgba(17,24,39,0.06);
+    }
+
+    .lead{
+      font-size:28px;
+      margin:0 0 12px 0;
+      line-height:1.12;
+      color:#0f172a;
+    }
+    .sublead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+    .actions{
+      display:flex;
+      gap:12px;
+      margin-top:8px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      border:0;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:#fff;
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(11,110,253,0.12);
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .feature{
+      padding:14px;
+      background:linear-gradient(180deg,rgba(11,110,253,0.03),transparent);
+      border-radius:10px;
+      font-size:14px;
+      color:#0f172a;
+    }
+    .feature h4{margin:0 0 8px 0;font-size:15px;}
+    .feature p{margin:0;color:var(--muted);font-size:13px;}
+
+    /* right column: form preview */
+    .form-box{
+      padding:18px;
+      border-radius:12px;
+    }
+    .form-box h3{margin:0 0 8px 0;font-size:16px;}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
+    .field label{font-size:12px;color:var(--muted);}
+    .field input, .field textarea, .field select{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e6eef8;
+      font-size:14px;
+      outline:none;
+      background:#fff;
+    }
+    .field textarea{min-height:100px;resize:vertical;}
+    .small{font-size:12px;color:var(--muted);margin-top:8px;}
+
+    .stats{
+      display:flex;
+      gap:12px;
+      margin-top:18px;
+    }
+    .stat{
+      flex:1;
+      background:#fff;
+      padding:12px;
+      border-radius:10px;
+      text-align:center;
+    }
+    .stat strong{display:block;font-size:18px;}
+    .stat span{font-size:12px;color:var(--muted);}
+
+    main{display:block;}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .form-box{order:2;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#" aria-label="Solução Digital">
+        <span class="logo">SD</span>
+        <div>
+          <h1>Solução Digital</h1>
+          <p>Automação e integração para empresas</p>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#recursos">Recursos</a>
+        <a href="#precos">Preços</a>
+        <a href="#contato" class="cta">Contato</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h2 class="lead">Automatize processos, aumente a eficiência</h2>
+          <p class="sublead">
+            Entregamos integrações confiáveis e fluxos automatizados que reduzem tarefas manuais
+            e permitem que seu time foque no que realmente importa.
+          </p>
+
+          <div class="actions">
+            <button class="btn primary" onclick="document.getElementById('form-contact').scrollIntoView({behavior:'smooth'})">Fale com a gente</button>
+            <a class="btn ghost" href="#recursos">Saiba mais</a>
+          </div>
+
+          <div class="features" id="recursos" aria-hidden="false" style="margin-top:20px;">
+            <div class="feature">
+              <h4>Integrações</h4>
+              <p>Conectamos seus sistemas internos com APIs, ERPs e ferramentas cloud.</p>
+            </div>
+            <div class="feature">
+              <h4>Automação</h4>
+              <p>Rotinas automáticas para reduzir retrabalho e acelerar entregas.</p>
+            </div>
+            <div class="feature">
+              <h4>Suporte</h4>
+              <p>Monitoramento e manutenção contínua para garantir disponibilidade.</p>
+            </div>
+          </div>
+
+          <div class="stats" style="margin-top:16px;">
+            <div class="stat">
+              <strong>+120</strong>
+              <span>Projetos entregues</span>
+            </div>
+            <div class="stat">
+              <strong>99,9%</strong>
+              <span>Disponibilidade média</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>Suporte crítico</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card form-box" aria-labelledby="form-title">
+          <h3 id="form-title">Solicite uma demonstração</h3>
+          <form id="form-contact" onsubmit="handleSubmit(event)" autocomplete="on" novalidate>
+            <div class="field">
+              <label for="name">Nome completo</label>
+              <input id="name" name="name" type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="field">
+              <label for="company">Empresa</label>
+              <input id="company" name="company" type="text" placeholder="Nome da empresa" />
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="contato@empresa.com" required />
+            </div>
+            <div class="field">
+              <label for="message">Mensagem</label>
+              <textarea id="message" name="message" placeholder="Descreva brevemente o seu caso"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <button type="submit" class="btn primary">Solicitar demo</button>
+              <button type="button" class="btn" onclick="resetForm()">Limpar</button>
+            </div>
+            <p class="small">Sem compromisso. Responderemos em até 2 dias úteis.</p>
+          </form>
+        </aside>
+      </section>
+
+      <section class="card" style="margin-bottom:20px;">
+        <h3 style="margin-top:0;">Como trabalhamos</h3>
+        <p style="color:var(--muted);line-height:1.6;">
+          Iniciamos com diagnóstico, definimos escopo e protótipo, e então entregamos a automação em ciclos
+          curtos com validação constante. Priorizamos segurança e observabilidade para garantir operações
+          previsíveis e fáceis de auditar.
+        </p>
+      </section>
+
+      <section id="precos" class="card" style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;padding:16px;border-radius:10px;background:linear-gradient(180deg,rgba(3,145,255,0.04),transparent)">
+          <h4 style="margin:0 0 8px 0;">Starter</h4>
+          <p style="margin:0;color:var(--muted);">Ideal para pequenos projetos e provas de conceito.</p>
+          <p style="font-weight:700;margin-top:12px;">R$ 1.200 / projeto</p>
+        </div>
+        <div style="flex:1;min-width:220px;padding:16px;border-radius:10px;background:#fff">
+          <h4 style="margin:0 0 8px 0;">Business</h4>
+          <p style="margin:0;color:var(--muted);">Automação com integração e suporte estendido.</p>
+          <p style="font-weight:700;margin-top:12px;">R$ 6.500 / mês</p>
+        </div>
+        <div style="flex:1;min-width:220px;padding:16px;border-radius:10px;background:#fff">
+          <h4 style="margin:0 0 8px 0;">Enterprise</h4>
+          <p style="margin:0;color:var(--muted);">Soluções sob medida com SLA e observabilidade.</p>
+          <p style="font-weight:700;margin-top:12px;">Sob consulta</p>
+        </div>
+      </section>
+
+      <footer class="card" id="contato" style="text-align:center;">
+        <p style="margin:0 0 8px 0;color:var(--muted);">Endereço fictício • suporte@solucaodigital.ex</p>
+        <p style="margin:0;font-size:13px;color:var(--muted)">© 2025 Solução Digital. Todos os direitos reservados.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Simples tratamento de formulário para demo; não envia dados a servidor.
+    function handleSubmit(e){
+      e.preventDefault();
+      var form = e.target;
+      var data = {
+        name: form.name.value.trim(),
+        company: form.company.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+      // validação mínima
+      if(!data.name || !data.email){
+        alert('Preencha nome e e-mail.');
+        return;
+      }
+      // exibe no console para leitura por script externo
+      console.log('demo_submit', data);
+      // feedback simples
+      form.querySelector('button[type="submit"]').textContent = 'Enviado';
+      setTimeout(function(){
+        form.reset();
+        form.querySelector('button[type="submit"]').textContent = 'Solicitar demo';
+      }, 1400);
+    }
+
+    function resetForm(){
+      var f = document.getElementById('form-contact');
+      if(f) f.reset();
+    }
+  </script>
+</body>
+</html>

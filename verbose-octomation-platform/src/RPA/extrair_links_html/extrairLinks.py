@@ -21,25 +21,14 @@ def extrair_links_html():
                     if(os.path.isfile(caminho_arquivo_saida)):
                         with open(caminho_arquivo_saida, "r", encoding="utf-8") as instancia_arquivo_saida:
                             arquivo_de_saida = instancia_arquivo_saida.read()
-
-                            passou = False
-                            
-                            if tag_a in arquivo_de_saida:
-                                print("JÁ EXISTE ESSE LINK")
-                            else:
-                                if arquivo_de_saida != "":
-                                    
-                                    if passou == False:
-                                        links.add("\n" + tag_a)
-                                        print("LINK ADICIONADO COM SUCESSO")
-                                else:
-                                    links.add(tag_a)
-
+                            if tag_a not in arquivo_de_saida:
+                                        links.add(tag_a)
+                    else: links.add(tag_a)
                     conteudo = conteudo[fim:]   
 
             iteracaoArquivo = 'a' if os.path.isfile(caminho_arquivo_saida) else 'w'
             with open(caminho_arquivo_saida,iteracaoArquivo, encoding="utf-8") as file:
-                file.write("\n".join(links)+"\n")
+                file.write("\n".join(links))
 
             return (f'Quantidade de Links no arquivo: {quantidadeLinks}',
                     f'Quantidade de Links Únicos: {len(links)}',

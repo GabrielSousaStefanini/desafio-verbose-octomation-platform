@@ -77,14 +77,28 @@ def extrair_links_html():
                     fim = conteudo.index(fim_tag, inicio+len(inicio_tag))
                     tag_a = conteudo[inicio:fim]
                     quantidadeLinks+=1
-                    
+                    registar_log(
+                    log_level='Debug',
+                    mensagem=f'Link encontrando. Quantidade Atual: {quantidadeLinks}',
+                    cultura='pt_BR.UTF-8',
+                    nome_handler='root',
+                    arquivo_log=ARQUIVO_LOG_PROJETO,
+                    )
+                   
                     if(os.path.isfile(caminho_arquivo_saida)):
                         with open(caminho_arquivo_saida, "r", encoding="utf-8") as instancia_arquivo_saida:
                             arquivo_de_saida = instancia_arquivo_saida.read()
                             if tag_a not in arquivo_de_saida:
                                         links.add(tag_a)
+                                        registar_log(
+                                        log_level='Debug',
+                                        mensagem=f'Colocando link Único',
+                                        cultura='pt_BR.UTF-8',
+                                        nome_handler='root',
+                                        arquivo_log=ARQUIVO_LOG_PROJETO,
+                                        )
                     else: links.add(tag_a)
-                    conteudo = conteudo[fim:]   
+                    conteudo = conteudo[fim:]  
 
             iteracaoArquivo = 'a' if os.path.isfile(caminho_arquivo_saida) else 'w'
             with open(caminho_arquivo_saida,iteracaoArquivo, encoding="utf-8") as file:
@@ -94,21 +108,31 @@ def extrair_links_html():
                     f'Quantidade de Links Únicos: {len(links)}',
                     links)
         else:
-            return f'Tipo de Arquivo inválido'
+            registar_log(
+            log_level='ERROR',
+            mensagem=f'Tipo de Arquivo inválido',
+            cultura='pt_BR.UTF-8',
+            nome_handler='root',
+            arquivo_log=ARQUIVO_LOG_PROJETO,
+            )
+           
     else:
-        return f'O arquivo informado pelo usuário não existe.'
+        registar_log(
+        log_level='ERROR',
+        mensagem=f'O arquivo informado pelo usuário não existe.',
+        cultura='pt_BR.UTF-8',
+        nome_handler='root',
+        arquivo_log=ARQUIVO_LOG_PROJETO,
+        )
+       
+
+
+print(extrair_links_html())
+
 registar_log(
     log_level='DEBUG',
     mensagem=f'Finalizando a automação {NOME_AUTOMACAO}',
     cultura='pt_BR.UTF-8',
     nome_handler='root',
     arquivo_log=ARQUIVO_LOG_PROJETO,
-)
-
-
-
-
-
-
-
-print(extrair_links_html())
+    )    

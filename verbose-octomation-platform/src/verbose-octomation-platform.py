@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 from pprint import pprint
 
-import docker
+
 
 from system.config.config_file import DIRETORIO_RAIZ
 
@@ -15,6 +15,9 @@ automacoes = {
     'renomear_arquivos_em_lote': Path(
         f'{DIRETORIO_RAIZ}/RPA/renomear_arquivos_em_lote/renomear_arquivos_em_lote.py'
     ),
+    'extrair_links_html': Path(
+        f'{DIRETORIO_RAIZ}/RPA/extrair_links_html/extrair_links_html.py'
+    )
     # Adicione outras automações aqui
 }
 
@@ -52,14 +55,7 @@ def listar_automacoes():
         print(f'- {nome}')
 
 
-def executar_automacao_docker(nome):
-    client = docker.from_env()
-    image = f'meu_repo/{nome}:latest'
-    try:
-        container = client.containers.run(image, detach=True)
-        print(f'Container {container.short_id} iniciado para {nome}')
-    except Exception as e:
-        print(f'Erro ao iniciar container: {e}')
+
 
 
 def scheduler_run(agendador, blocking=False):
@@ -99,11 +95,12 @@ if __name__ == '__main__':
     ):
         target_time = datetime.datetime(2025, 8, 30, 17, minuto, 0).timestamp()
 
+        
         agendador.enterabs(
             time=target_time,
             priority=1,
             action=executar_automacao,
-            argument=('renomear_arquivos_em_lote',),
+            argument=('extrair_links_html',),
         )
 
     # pprint(scheduler.queue)

@@ -16,10 +16,6 @@ from shared.shared_config import (
 
 NOME_AUTOMACAO = os.path.basename(__file__).removesuffix('.py')
 DIRETORIO_PROJETO = DIRETORIO_RPA / NOME_AUTOMACAO
-DIRETORIO_CONFIG = DIRETORIO_PROJETO / 'config'
-ARQUIVO_CONFIG_RENAME_RULES = DIRETORIO_CONFIG / 'rename_rules.json'
-PREFIXO_DUPLICADO = 'dup'
-SUFIXO_DUPLICADO = 'dup'
 
 DATA_HORA_EXECUCAO = localizar_data_hora(
     datetime=datetime.now(),

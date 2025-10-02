@@ -1,4 +1,4 @@
-
+from bs4 import BeautifulSoup
 from pathlib import Path
 import sys
 from json import load
@@ -74,9 +74,9 @@ def extrair_links_html():
     if caminho_arquivo_entrada.is_file():
         if caminho_arquivo_entrada.suffix.lower() in (".html", ".htm"):
             conteudo = ler_arquivo(caminho_arquivo_entrada)
+            soup = BeautifulSoup(conteudo, 'html.parser')
+            linksExtraidos = soup.find_all('a')
             links = set()
-            inicio_tag = 'href="'
-            fim_tag = '"'
             quantidadeLinks = 0
             registar_log(
                 log_level='DEBUG',
@@ -86,28 +86,31 @@ def extrair_links_html():
                 arquivo_config=ARQUIVO_LOG_CONFIG,
                 arquivo_log=ARQUIVO_LOG_PROJETO,
                 )
-            while inicio_tag in conteudo:
 
-                inicio = conteudo.index(inicio_tag)+len(inicio_tag)
-                fim = conteudo.index(fim_tag, inicio+len(inicio_tag))
-                tag_a = conteudo[inicio:fim]
-                quantidadeLinks+=1
+            
+            quantidadeLinks+=1
                 
-                
-                if(caminho_arquivo_saida.is_file()):
+            listaLinks = [linkAtual.get('href') for linkAtual in linksExtraidos]
+            
+            for tag_a in listaLinks:
+                # Verifica se o arquivo de saída existe
+                if caminho_arquivo_saida.is_file():
                     arquivo_de_saida = ler_arquivo(caminho_arquivo_saida)
+                    # Verifica se tag_a não está no conteúdo do arquivo
                     if tag_a not in arquivo_de_saida:
                         links.add(tag_a)                  
-                else: links.add(tag_a)
+                else:
+                    # Se o arquivo não existe, adiciona o link
+                    links.add(tag_a)
 
-                conteudo = conteudo[fim:]
+                # Registra log sobre o link encontrado
                 registar_log(
-                log_level='DEBUG',
-                mensagem=f'Link Encontrado: {tag_a}',
-                cultura='pt_BR.UTF-8',
-                nome_handler='root',
-                arquivo_config=ARQUIVO_LOG_CONFIG,
-                arquivo_log=ARQUIVO_LOG_PROJETO,
+                    log_level='DEBUG',
+                    mensagem=f'Link Encontrado: {tag_a}',
+                    cultura='pt_BR.UTF-8',
+                    nome_handler='root',
+                    arquivo_config=ARQUIVO_LOG_CONFIG,
+                    arquivo_log=ARQUIVO_LOG_PROJETO,
                 )
             registar_log(
                 log_level='DEBUG',

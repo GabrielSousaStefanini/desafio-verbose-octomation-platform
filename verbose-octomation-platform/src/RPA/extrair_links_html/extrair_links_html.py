@@ -76,42 +76,29 @@ def extrair_links_html():
             conteudo = ler_arquivo(caminho_arquivo_entrada)
             soup = BeautifulSoup(conteudo, 'html.parser')
             linksExtraidos = soup.find_all('a')
-            links = set()
             quantidadeLinks = 0
             registar_log(
-                log_level='DEBUG',
+                log_level='INFO',
                 mensagem=f'Iniciando extração dos links.',
                 cultura='pt_BR.UTF-8',
                 nome_handler='root',
                 arquivo_config=ARQUIVO_LOG_CONFIG,
                 arquivo_log=ARQUIVO_LOG_PROJETO,
                 )
-
-            
-            quantidadeLinks+=1
-                
+            links = set()
+           
+            arquivoSaidaExiste = caminho_arquivo_saida.is_file()
+            arquivo_de_saida = set(ler_arquivo(caminho_arquivo_saida).splitlines()) if arquivoSaidaExiste else set()
             listaLinks = [linkAtual.get('href') for linkAtual in linksExtraidos]
-            
+            quantidadeLinks = len(listaLinks)
+        
             for tag_a in listaLinks:
-                # Verifica se o arquivo de saída existe
-                if caminho_arquivo_saida.is_file():
-                    arquivo_de_saida = ler_arquivo(caminho_arquivo_saida)
-                    # Verifica se tag_a não está no conteúdo do arquivo
+                
+                if arquivoSaidaExiste:
                     if tag_a not in arquivo_de_saida:
                         links.add(tag_a)                  
                 else:
-                    # Se o arquivo não existe, adiciona o link
                     links.add(tag_a)
-
-                # Registra log sobre o link encontrado
-                registar_log(
-                    log_level='DEBUG',
-                    mensagem=f'Link Encontrado: {tag_a}',
-                    cultura='pt_BR.UTF-8',
-                    nome_handler='root',
-                    arquivo_config=ARQUIVO_LOG_CONFIG,
-                    arquivo_log=ARQUIVO_LOG_PROJETO,
-                )
             registar_log(
                 log_level='DEBUG',
                 mensagem=f'Total de Links encontrandos: {quantidadeLinks}, Links Adicionados: {len(links)}',
@@ -151,7 +138,7 @@ def extrair_links_html():
 print(extrair_links_html())
 
 registar_log(
-    log_level='DEBUG',
+    log_level='INFO',
     mensagem=f'Finalizando a automação {NOME_AUTOMACAO}',
     cultura='pt_BR.UTF-8',
     nome_handler='root',

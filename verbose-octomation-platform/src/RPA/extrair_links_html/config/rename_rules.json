@@ -1,5 +1,5 @@
 {
-    "arquivoEntrada": "C:/Users/cpsouza2/Downloads/desafio-verbose-octomation-platform/verbose-octomation-platform/src/RPA/extrair_links_html/Arquivos/links_5mb.html",
-    "arquivoSaida": "C:/Users/cpsouza2/Downloads/desafio-verbose-octomation-platform/verbose-octomation-platform/src/RPA/extrair_links_html/Arquivos/saida.txt"
+    "arquivoEntrada": "C:/Users/gssousa6/OneDrive - Stefanini/Área de Trabalho/python/desafio-verbose-octomation-platform/verbose-octomation-platform/src/RPA/extrair_links_html/Arquivos/links_5mb.html",
+    "arquivoSaida": "C:/Users/gssousa6/OneDrive - Stefanini/Área de Trabalho/python/desafio-verbose-octomation-platform/verbose-octomation-platform/src/RPA/extrair_links_html/Arquivos/saida.txt"
     
 }
